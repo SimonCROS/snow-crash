@@ -17,7 +17,7 @@ Apres avoir recu les fichiers, on peut donc commencer a les lancer
 
 Puis dans une autre fenetre on fait:
 
-`nc -lk 6969`
+`nc -lk 6969`.
 
 On attends un peu...
 Et on obtient le mot de passe de flag10 "woupa2yuojeeaaed06riuj63c".
