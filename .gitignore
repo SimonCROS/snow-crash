@@ -1,3 +1,4 @@
 *.iso
 shared/
 john
+*.out
