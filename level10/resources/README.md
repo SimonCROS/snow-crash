@@ -10,12 +10,12 @@ On donne les droits a /home/user dans level10, on fait 2 script, un pour faire l
 
 Apres avoir recu les fichiers, on peut donc commencer a les lancer
 
-`./invert.bash a token &`
-`./spam.bash`
+`./invert.bash a token &`.
+`./spam.bash`.
 
 Puis dans une autre fenetre on fait:
 
-`nc -lk 6969`
+`nc -lk 6969`.
 
 On attends un peu...
 Et on obtient le mot de passe de flag10 "woupa2yuojeeaaed06riuj63c".
