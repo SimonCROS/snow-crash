@@ -30,7 +30,7 @@ En analysant plus loin dans le main, on peut voir une repetition d'un meme pater
 ```
 
 On decide donc de faire un jump sur le debut de la derniere occurence de ce patern:
-   0x08048de5 <+1183>:  mov    0x804b060,%eax
+   `0x08048de5 <+1183>:  mov    0x804b060,%eax`
 
 En continuant le programme a partir de ce point, on peut obtenir le flag.
 
