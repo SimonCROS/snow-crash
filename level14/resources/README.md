@@ -11,7 +11,7 @@ gdb /bin/getflag
 disas main
 ```
 
-Quand on run le programme, on obtient la ligne ci-dessus.
+Quand on run le programme, on obtient la ligne `You should not reverse this`.
 
 On voit sur une ligne : `   0x080489a3 <+93>:    jmp    0x8048eb2 <main+1388> ` qui jump a la fin du programme.
 On decide donc de mettre un breakpoint juste avant celui ci et on observe que les deux lignes au dessus affiche le `you should not reverse this`.
